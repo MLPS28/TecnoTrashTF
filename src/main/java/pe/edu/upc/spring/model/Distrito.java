@@ -17,36 +17,38 @@ public class Distrito implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idDistrito;
+	@Column(name = "CDistrito", nullable = false)
+	private int CDistrito;
 	
-	@Column(name="nombreDistrito", length=60, nullable=false)
-	private String nameDistrito;
+	@Column(name = "NDistrito", nullable = false, length = 50)
+	private String NDistrito;
 
 	public Distrito() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Distrito(int idDistrito, String nameDistrito) {
+	public Distrito(int cDistrito, String nDistrito) {
 		super();
-		this.idDistrito = idDistrito;
-		this.nameDistrito = nameDistrito;
+		CDistrito = cDistrito;
+		NDistrito = nDistrito;
 	}
 
-	public int getIdDistrito() {
-		return idDistrito;
+	public int getCDistrito() {
+		return CDistrito;
 	}
 
-	public void setIdDistrito(int idDistrito) {
-		this.idDistrito = idDistrito;
+	public void setCDistrito(int cDistrito) {
+		CDistrito = cDistrito;
 	}
 
-	public String getNameDistrito() {
-		return nameDistrito;
+	public String getNDistrito() {
+		return NDistrito;
 	}
 
-	public void setNameDistrito(String nameDistrito) {
-		this.nameDistrito = nameDistrito;
+	public void setNDistrito(String nDistrito) {
+		NDistrito = nDistrito;
 	}
+
 	
 }
