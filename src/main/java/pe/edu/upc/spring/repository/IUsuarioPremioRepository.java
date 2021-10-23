@@ -8,5 +8,5 @@ import pe.edu.upc.spring.model.UsuarioPremio;
 @Repository						   //<sobre que entidad, El primary key(el cual es int este caso se pone integer)>
 public interface IUsuarioPremioRepository extends JpaRepository<UsuarioPremio, Integer>{ //gracias a Extends, iracerepository puede hacer uso de las operaciones de jpare
 
-	
+	//jj
 }
