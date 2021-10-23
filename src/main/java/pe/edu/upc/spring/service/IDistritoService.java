@@ -7,7 +7,7 @@ import pe.edu.upc.spring.model.Distrito;
 
 public interface IDistritoService {
 	public boolean grabar(Distrito distrito);
-	public void eliminar(int idDistrito);
-	public Optional<Distrito> listarId(int idDistrito);
+	public void eliminar(int CDistrito);
+	public Optional<Distrito> listarId(int CDistrito);
 	public List<Distrito> listar();	
 }

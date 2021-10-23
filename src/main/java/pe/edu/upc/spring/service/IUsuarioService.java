@@ -7,7 +7,7 @@ import pe.edu.upc.spring.model.Usuario;
 
 public interface IUsuarioService {
 	public boolean grabar(Usuario usuario);
-	public void eliminar(int idRace);
-	public Optional<Usuario> listarId(int idUsuario);
+	public void eliminar(int CUsuario);
+	public Optional<Usuario> listarId(int CUsuario);
 	public List<Usuario> listar();
 }

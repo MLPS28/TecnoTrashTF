@@ -29,14 +29,14 @@ public class PremioServiceImpl implements IPremioService {
 
 	@Override
 	@Transactional
-	public void eliminar(int idPremio) {
-		dPremio.deleteById(idPremio); //solo necesita el id que se desea eliminar
+	public void eliminar(int CPremio) {
+		dPremio.deleteById(CPremio); //solo necesita el id que se desea eliminar
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Optional<Premio> listarId(int idPremio) {
-		return dPremio.findById(idPremio);
+	public Optional<Premio> listarId(int CPremio) {
+		return dPremio.findById(CPremio);
 	}
 
 	@Override

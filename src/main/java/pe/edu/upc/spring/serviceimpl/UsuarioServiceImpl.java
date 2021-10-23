@@ -29,14 +29,14 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
 	@Override
 	@Transactional
-	public void eliminar(int idUsuario) {
-		dUsuario.deleteById(idUsuario); //solo necesita el id que se desea eliminar
+	public void eliminar(int CUsuario) {
+		dUsuario.deleteById(CUsuario); //solo necesita el id que se desea eliminar
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Optional<Usuario> listarId(int idUsuario) {
-		return dUsuario.findById(idUsuario);
+	public Optional<Usuario> listarId(int CUsuario) {
+		return dUsuario.findById(CUsuario);
 	}
 
 	@Override
