@@ -17,36 +17,38 @@ public class Premio implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idPremio;
+	@Column(name="CPremio", nullable = false)
+	private int CPremio;
 	
-	@Column(name="nombrePremio", length=60, nullable=false)
-	private String namePremio;
+	@Column(name="NPremio", nullable = false, length = 20)
+	private String NPremio;
 
 	public Premio() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Premio(int idPremio, String namePremio) {
+	public Premio(int cPremio, String nPremio) {
 		super();
-		this.idPremio = idPremio;
-		this.namePremio = namePremio;
+		CPremio = cPremio;
+		NPremio = nPremio;
 	}
 
-	public int getIdPremio() {
-		return idPremio;
+	public int getCPremio() {
+		return CPremio;
 	}
 
-	public void setIdPremio(int idPremio) {
-		this.idPremio = idPremio;
+	public void setCPremio(int cPremio) {
+		CPremio = cPremio;
 	}
 
-	public String getNamePremio() {
-		return namePremio;
+	public String getNPremio() {
+		return NPremio;
 	}
 
-	public void setNamePremio(String namePremio) {
-		this.namePremio = namePremio;
+	public void setNPremio(String nPremio) {
+		NPremio = nPremio;
 	}
+
 	
 }

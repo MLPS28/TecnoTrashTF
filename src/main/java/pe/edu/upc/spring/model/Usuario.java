@@ -17,21 +17,28 @@ public class Usuario implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idUsuario;
+	@Column(name="CUsuario", nullable = false)
+	private int CUsuario;
 	
-	@Column(name="nombreUsuario", length=60, nullable=false)
-	private String nameUsuario;
-
-	@Column(name="NDNI", nullable = false)
+	@Column(name="NUsuario", nullable = false, length = 40)
+	private String NUsuario;
+	
+	@Column(name="NUsuarioAP", nullable = false, length = 30)
+	private String NUsuarioAP;
+	
+	@Column(name="NUsuarioAM", nullable = false, length = 30)
+	private String NUsuarioAM;
+	
+	@Column(name="NDNI", nullable = false, length = 8)
 	private int NDNI;
 	
-	@Column(name="NEmail", length=60, nullable=false)
+	@Column(name="NEmail", nullable = false, length = 45)
 	private String NEmail;
 	
-	@Column(name="NPassword", length = 30, nullable = false)
+	@Column(name="NPassword", nullable = false, length = 30)
 	private String NPassword;
 	
-	@Column(name="QPuntos", length = 10, nullable = false)
+	@Column(name="QPuntos", nullable = false, length = 10)
 	private int QPuntos;
 
 	public Usuario() {
@@ -39,30 +46,49 @@ public class Usuario implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Usuario(int idUsuario, String nameUsuario, int nDNI, String nEmail, String nPassword, int qPuntos) {
+	public Usuario(int cUsuario, String nUsuario, String nUsuarioAP, String nUsuarioAM, int nDNI, String nEmail,
+			String nPassword, int qPuntos) {
 		super();
-		this.idUsuario = idUsuario;
-		this.nameUsuario = nameUsuario;
+		CUsuario = cUsuario;
+		NUsuario = nUsuario;
+		NUsuarioAP = nUsuarioAP;
+		NUsuarioAM = nUsuarioAM;
 		NDNI = nDNI;
 		NEmail = nEmail;
 		NPassword = nPassword;
 		QPuntos = qPuntos;
 	}
 
-	public int getIdUsuario() {
-		return idUsuario;
+	public int getCUsuario() {
+		return CUsuario;
 	}
 
-	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setCUsuario(int cUsuario) {
+		CUsuario = cUsuario;
 	}
 
-	public String getNameUsuario() {
-		return nameUsuario;
+	public String getNUsuario() {
+		return NUsuario;
 	}
 
-	public void setNameUsuario(String nameUsuario) {
-		this.nameUsuario = nameUsuario;
+	public void setNUsuario(String nUsuario) {
+		NUsuario = nUsuario;
+	}
+
+	public String getNUsuarioAP() {
+		return NUsuarioAP;
+	}
+
+	public void setNUsuarioAP(String nUsuarioAP) {
+		NUsuarioAP = nUsuarioAP;
+	}
+
+	public String getNUsuarioAM() {
+		return NUsuarioAM;
+	}
+
+	public void setNUsuarioAM(String nUsuarioAM) {
+		NUsuarioAM = nUsuarioAM;
 	}
 
 	public int getNDNI() {

@@ -17,36 +17,38 @@ public class TipoVia implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idTipoVia;
+	@Column(name="CTipoVia", nullable = false)
+	private int CTipoVia;
 	
-	@Column(name="nombreTipoVia", length=60, nullable=false)
-	private String nameTipoVia;
+	@Column(name = "NTipoVia", nullable = false, length = 25)
+	private String NTipoVia;
 
 	public TipoVia() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public TipoVia(int idTipoVia, String nameTipoVia) {
+	public TipoVia(int cTipoVia, String nTipoVia) {
 		super();
-		this.idTipoVia = idTipoVia;
-		this.nameTipoVia = nameTipoVia;
+		CTipoVia = cTipoVia;
+		NTipoVia = nTipoVia;
 	}
 
-	public int getIdTipoVia() {
-		return idTipoVia;
+	public int getCTipoVia() {
+		return CTipoVia;
 	}
 
-	public void setIdTipoVia(int idTipoVia) {
-		this.idTipoVia = idTipoVia;
+	public void setCTipoVia(int cTipoVia) {
+		CTipoVia = cTipoVia;
 	}
 
-	public String getNameTipoVia() {
-		return nameTipoVia;
+	public String getNTipoVia() {
+		return NTipoVia;
 	}
 
-	public void setNameTipoVia(String nameTipoVia) {
-		this.nameTipoVia = nameTipoVia;
+	public void setNTipoVia(String nTipoVia) {
+		NTipoVia = nTipoVia;
 	}
+	
 
 }
