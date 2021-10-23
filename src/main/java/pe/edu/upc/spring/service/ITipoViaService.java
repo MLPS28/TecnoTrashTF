@@ -8,7 +8,7 @@ import pe.edu.upc.spring.model.TipoVia;
 public interface ITipoViaService {
 	public boolean grabar(TipoVia tipovia);
 	
-	public void eliminar(int idTipoVia);
-	public Optional<TipoVia> listarId(int idTipoVia);
+	public void eliminar(int CTipoVia);
+	public Optional<TipoVia> listarId(int CTipoVia);
 	public List<TipoVia> listar();	
 }

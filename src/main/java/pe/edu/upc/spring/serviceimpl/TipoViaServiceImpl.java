@@ -29,14 +29,14 @@ public class TipoViaServiceImpl implements ITipoViaService {
 
 	@Override
 	@Transactional
-	public void eliminar(int idTipoVia) {
-		dTipovia.deleteById(idTipoVia); //solo necesita el id que se desea eliminar
+	public void eliminar(int CTipoVia) {
+		dTipovia.deleteById(CTipoVia); //solo necesita el id que se desea eliminar
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Optional<TipoVia> listarId(int idTipoVia) {
-		return dTipovia.findById(idTipoVia);
+	public Optional<TipoVia> listarId(int CTipoVia) {
+		return dTipovia.findById(CTipoVia);
 	}
 
 	@Override

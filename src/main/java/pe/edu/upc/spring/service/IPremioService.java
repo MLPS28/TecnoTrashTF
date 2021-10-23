@@ -8,7 +8,7 @@ import pe.edu.upc.spring.model.Premio;
 public interface IPremioService {
 	public boolean grabar(Premio premio);
 	
-	public void eliminar(int idPremio);
-	public Optional<Premio> listarId(int idPremio);
+	public void eliminar(int CPremio);
+	public Optional<Premio> listarId(int CPremio);
 	public List<Premio> listar();
 }

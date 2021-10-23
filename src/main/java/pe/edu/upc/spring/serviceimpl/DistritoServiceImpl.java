@@ -29,14 +29,14 @@ public class DistritoServiceImpl implements IDistritoService {
 
 	@Override
 	@Transactional
-	public void eliminar(int idDistrito) {
-		dDistrito.deleteById(idDistrito); //solo necesita el id que se desea eliminar
+	public void eliminar(int CDistrito) {
+		dDistrito.deleteById(CDistrito); //solo necesita el id que se desea eliminar
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Optional<Distrito> listarId(int idDistrito) {
-		return dDistrito.findById(idDistrito);
+	public Optional<Distrito> listarId(int CDistrito) {
+		return dDistrito.findById(CDistrito);
 	}
 
 	@Override
