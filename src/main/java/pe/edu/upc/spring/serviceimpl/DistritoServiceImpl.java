@@ -7,21 +7,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import pe.edu.upc.spring.model.Direccion;
-import pe.edu.upc.spring.repository.IDireccionRepository;
-import pe.edu.upc.spring.service.IDireccionService;
+
+import pe.edu.upc.spring.model.Distrito;
+import pe.edu.upc.spring.repository.IDistritoRepository;
+import pe.edu.upc.spring.service.IDistritoService;
+
 
 @Service
-public class DistritoServiceImpl implements IDireccionService {
+public class DistritoServiceImpl implements IDistritoService {
 
 	@Autowired //ya no es inject
-	private IDireccionRepository dDireccion;  //drace: objeto o representacion de IRaceRepository
+	private IDistritoRepository diDistrito;  //drace: objeto o representacion de IRaceRepository
 	
 	@Override
 	@Transactional //los que no impliquen listados solo seran de tipo transactional
-	public boolean grabar(Direccion direccion) {
-		Direccion objDireccion = dDireccion.save(direccion);
-		if (objDireccion == null)
+	public boolean grabar(Distrito distrito) {
+		Distrito objDistrito = diDistrito.save(distrito);
+		if (objDistrito == null)
 			return false;
 		else
 			return true;
@@ -29,20 +31,20 @@ public class DistritoServiceImpl implements IDireccionService {
 
 	@Override
 	@Transactional
-	public void eliminar(int CDireccion) {
-		dDireccion.deleteById(CDireccion); //solo necesita el id que se desea eliminar
+	public void eliminar(int CDistrito) {
+		diDistrito.deleteById(CDistrito); //solo necesita el id que se desea eliminar
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public Optional<Direccion> listarId(int CDireccion) {
-		return dDireccion.findById(CDireccion);
+	public Optional<Distrito> listarId(int CDistrito) {
+		return diDistrito.findById(CDistrito);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Direccion> listar() {
-		return dDireccion.findAll(); //devuelve todo en una lista
+	public List<Distrito> listar() {
+		return diDistrito.findAll(); //devuelve todo en una lista
 	}
 
 }
