@@ -26,7 +26,7 @@ public class DireccionController {
 	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
-		return "bienvenido"; // "bienvenido" es una pagina del frontEnd, pagina de Inicio
+		return "bienvenido"; 
 	}
 	
 	@RequestMapping("/")
