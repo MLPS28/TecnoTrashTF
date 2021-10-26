@@ -19,26 +19,26 @@ import pe.edu.upc.spring.model.Distrito;
 import pe.edu.upc.spring.service.IDistritoService;
 
 @Controller 	
-@RequestMapping("/distrito") //que atienda el controlador /race  (cuando hay muchos controladores), pero este no muestra nada, tiene q ir a bienvenido
+@RequestMapping("/distrito") 
 public class DistritoController {
 	@Autowired
-	private IDistritoService dService;
+	private IDistritoService diService;
 	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
-		return "bienvenido"; // "bienvenido" es una pagina del frontEnd, pagina de Inicio
+		return "bienvenido"; 
 	}
 	
 	@RequestMapping("/")
 	public String irPaginaListadoRazas(Map<String, Object> model) {
-		model.put("listaDistritos", dService.listar());
-		return "listDistrito"; // "listRace" es una pagina del frontEnd para listar
+		model.put("listaDistritos", diService.listar());
+		return "listDistrito";
 	}
 
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
 		model.addAttribute("distrito", new Distrito());
-		return "distrito"; // "race" es una pagina del frontEnd para insertar y/o modificar
+		return "distrito";
 	}
 	
 	@RequestMapping("/registrar")
@@ -48,7 +48,7 @@ public class DistritoController {
 		if (binRes.hasErrors())
 			return "race";
 		else {
-			boolean flag = dService.grabar(objDistrito);
+			boolean flag = diService.grabar(objDistrito);
 			if (flag)
 				return "redirect:/distrito/listar";
 			else {
@@ -62,7 +62,7 @@ public class DistritoController {
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) 
 		throws ParseException
 	{
-		Optional<Distrito> objDistrito = dService.listarId(id);
+		Optional<Distrito> objDistrito = diService.listarId(id);
 		if (objDistrito == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un problema");
 			return "redirect:/distrito/listar";
@@ -77,21 +77,21 @@ public class DistritoController {
 	public String eliminar(Map<String, Object> model,  @RequestParam(value="id") Integer id) {
 		try {
 			if (id!=null && id>0) {
-				dService.eliminar(id);
-				model.put("listaDistritos", dService.listar());
+				diService.eliminar(id);
+				model.put("listaDistritos", diService.listar());
 			}
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje", "Ocurrio un error");
-			model.put("listaDistritos", dService.listar());
+			model.put("listaDistritos", diService.listar());
 		}
 		return "listDistrito";
 	}
 		
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model ) {
-		model.put("listaDistritos", dService.listar());
+		model.put("listaDistritos", diService.listar());
 		return "listDistrito";
 	}
 	
