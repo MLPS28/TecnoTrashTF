@@ -30,12 +30,12 @@
     			<div class="row clearfix">
     				<div class="col-md-12 column">
     					
-    					<a 	style="border-bottom-color: green" th:href="@{/race/irRegistrar}"
+    					<a 	style="border-bottom-color: green" th:href="@{/reporte/irRegistrar}"
     						id="add-row" type="button" class="btn btn-primary btn-md left-block">
-    						<span class="glyphicon glyphicon-plus"></span> Mascota
+    						<span class="glyphicon glyphicon-plus"></span> Reporte
     					</a>
     					
-						<a 	style="border-bottom-color: green" th:href="@{/race/irBuscar}"
+						<a 	style="border-bottom-color: green" th:href="@{/reporte/irBuscar}"
     						id="add-row" type="button" class="btn btn-primary btn-md left-block">
     						<span class="glyphicon glyphicon-search"></span> Buscar
     					</a>
@@ -43,7 +43,7 @@
     					<table class="table table-bordered table-hover table-striped" id="tab_logic">
     						<thead>
     							<tr>
-    								<th class="text-center">CODIGO</th>
+    								<th class="text-center">REPORTE</th>
     								<th class="text-center">MASCOTA</th>
     								<th class="text-center">FEC.NAC</th>
     								<th class="text-center">RAZA</th>
@@ -53,14 +53,9 @@
     							</tr>
     						</thead>
     						<tbody>
-    							<tr th:each="p: ${listaMascotas}">
-    								<td th:text="${p.idPet}"></td>
-    								<td th:text="${p.namePet}"></td>
-    								<td th:text="${#dates.format(p.birthDatePet, 'dd/MM/yyyy')}"></td>
-    								<td th:text="${p.race.nameRace}"></td>
-    								<td th:text="${p.dueno.nameMaster}"></td>
-    								<td><a th:href="@{/pet/eliminar?id=}+${p.idPet}">Eliminar</a></td>    								
-    								<td><a th:href="@{'/pet/modificar/'}+${p.idPet}">Modificar</a></td>
+    							<tr th:each="p: ${listaReportes}">
+    								<td th:text="${p.CReporte}"></td>
+    								
     							</tr>
     						</tbody>
     					</table> 

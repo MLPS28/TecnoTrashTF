@@ -22,7 +22,7 @@ import pe.edu.upc.spring.service.IReporteService;
 @RequestMapping("/direccion") //que atienda el controlador /race  (cuando hay muchos controladores), pero este no muestra nada, tiene q ir a bienvenido
 public class DireccionController {
 	@Autowired
-	private IReporteService uService;
+	private IReporteService direcService;
 	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
@@ -31,7 +31,7 @@ public class DireccionController {
 	
 	@RequestMapping("/")
 	public String irPaginaListadoUsuarios(Map<String, Object> model) {
-		model.put("listaReportes", uService.listar());
+		model.put("listaReportes", direcService.listar());
 		return "listReporte"; // "listRace" es una pagina del frontEnd para listar
 	}
 
@@ -48,7 +48,7 @@ public class DireccionController {
 		if (binRes.hasErrors())
 			return "reporte";
 		else {
-			boolean flag = uService.grabar(objReporte);
+			boolean flag = direcService.grabar(objReporte);
 			if (flag)
 				return "redirect:/usuario/listar";
 			else {
@@ -62,7 +62,7 @@ public class DireccionController {
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) 
 		throws ParseException
 	{
-		Optional<Reporte> objReporte = uService.listarId(id);
+		Optional<Reporte> objReporte = direcService.listarId(id);
 		if (objReporte == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un problema");
 			return "redirect:/usuario/listar";
@@ -77,21 +77,21 @@ public class DireccionController {
 	public String eliminar(Map<String, Object> model,  @RequestParam(value="id") Integer id) {
 		try {
 			if (id!=null && id>0) {
-				uService.eliminar(id);
-				model.put("listaReportes", uService.listar());
+				direcService.eliminar(id);
+				model.put("listaReportes", direcService.listar());
 			}
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje", "Ocurrio un problema");
-			model.put("listaReportes", uService.listar());
+			model.put("listaReportes", direcService.listar());
 		}
 		return "listReporte";
 	}
 		
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model ) {
-		model.put("listaReportes", uService.listar());
+		model.put("listaReportes", direcService.listar());
 		return "listReporte";
 	}
 	

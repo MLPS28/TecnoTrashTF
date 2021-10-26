@@ -22,7 +22,7 @@ import pe.edu.upc.spring.service.IUsuarioPremioService;
 @RequestMapping("/usuario") //que atienda el controlador /race  (cuando hay muchos controladores), pero este no muestra nada, tiene q ir a bienvenido
 public class UsuarioPremioController {
 	@Autowired
-	private IUsuarioPremioService uService;
+	private IUsuarioPremioService upService;
 	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
@@ -31,7 +31,7 @@ public class UsuarioPremioController {
 	
 	@RequestMapping("/")
 	public String irPaginaListadoUsuarios(Map<String, Object> model) {
-		model.put("listaUsuarios", uService.listar());
+		model.put("listaUsuarios", upService.listar());
 		return "listUsuario"; // "listRace" es una pagina del frontEnd para listar
 	}
 
@@ -48,7 +48,7 @@ public class UsuarioPremioController {
 		if (binRes.hasErrors())
 			return "usuariopremio";
 		else {
-			boolean flag = uService.grabar(objUsuarioPremio);
+			boolean flag = upService.grabar(objUsuarioPremio);
 			if (flag)
 				return "redirect:/usuario/listar";
 			else {
@@ -62,7 +62,7 @@ public class UsuarioPremioController {
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) 
 		throws ParseException
 	{
-		Optional<UsuarioPremio> objUsuarioPremio = uService.listarId(id);
+		Optional<UsuarioPremio> objUsuarioPremio = upService.listarId(id);
 		if (objUsuarioPremio == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un problema");
 			return "redirect:/usuario/listar";
@@ -77,21 +77,21 @@ public class UsuarioPremioController {
 	public String eliminar(Map<String, Object> model,  @RequestParam(value="id") Integer id) {
 		try {
 			if (id!=null && id>0) {
-				uService.eliminar(id);
-				model.put("listaUsuarios", uService.listar());
+				upService.eliminar(id);
+				model.put("listaUsuarios", upService.listar());
 			}
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje", "Ocurrio un problema");
-			model.put("listaUsuarios", uService.listar());
+			model.put("listaUsuarios", upService.listar());
 		}
 		return "listUsuario";
 	}
 		
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model ) {
-		model.put("listaUsuarios", uService.listar());
+		model.put("listaUsuarios", upService.listar());
 		return "listUsuario";
 	}
 	

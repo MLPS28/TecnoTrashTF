@@ -22,7 +22,7 @@ import pe.edu.upc.spring.service.IUsuarioService;
 @RequestMapping("/usuario") //que atienda el controlador /race  (cuando hay muchos controladores), pero este no muestra nada, tiene q ir a bienvenido
 public class ReporteController {
 	@Autowired
-	private IUsuarioService uService;
+	private IUsuarioService rService;
 	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
@@ -31,7 +31,7 @@ public class ReporteController {
 	
 	@RequestMapping("/")
 	public String irPaginaListadoUsuarios(Map<String, Object> model) {
-		model.put("listaUsuarios", uService.listar());
+		model.put("listaUsuarios", rService.listar());
 		return "listUsuario"; // "listRace" es una pagina del frontEnd para listar
 	}
 
@@ -48,7 +48,7 @@ public class ReporteController {
 		if (binRes.hasErrors())
 			return "usuario";
 		else {
-			boolean flag = uService.grabar(objUsuario);
+			boolean flag = rService.grabar(objUsuario);
 			if (flag)
 				return "redirect:/usuario/listar";
 			else {
@@ -62,7 +62,7 @@ public class ReporteController {
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) 
 		throws ParseException
 	{
-		Optional<Usuario> objUsuario = uService.listarId(id);
+		Optional<Usuario> objUsuario = rService.listarId(id);
 		if (objUsuario == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un problema");
 			return "redirect:/usuario/listar";
@@ -77,21 +77,21 @@ public class ReporteController {
 	public String eliminar(Map<String, Object> model,  @RequestParam(value="id") Integer id) {
 		try {
 			if (id!=null && id>0) {
-				uService.eliminar(id);
-				model.put("listaUsuarios", uService.listar());
+				rService.eliminar(id);
+				model.put("listaUsuarios", rService.listar());
 			}
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje", "Ocurrio un problema");
-			model.put("listaUsuarios", uService.listar());
+			model.put("listaUsuarios", rService.listar());
 		}
 		return "listUsuario";
 	}
 		
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model ) {
-		model.put("listaUsuarios", uService.listar());
+		model.put("listaUsuarios", rService.listar());
 		return "listUsuario";
 	}
 	
