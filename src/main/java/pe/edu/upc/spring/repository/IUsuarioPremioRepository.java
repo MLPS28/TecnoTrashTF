@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import pe.edu.upc.spring.model.UsuarioPremio;
 
 @Repository						 
-public interface IUsuarioPremioRepository extends JpaRepository<UsuarioPremio, Integer>{ 
+public interface IUsuarioPremioRepository extends JpaRepository <UsuarioPremio, Integer>{ 
 
-	//jj
 }

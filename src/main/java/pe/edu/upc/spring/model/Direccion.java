@@ -29,11 +29,11 @@ public class Direccion implements Serializable {
 	private int NumDireccion;
 	
 	@ManyToOne
-	@JoinColumn(name = "CDistrito")
+	@JoinColumn(name = "CDistrito", nullable = false)
 	private Distrito Objdistrito;
 	
 	@ManyToOne
-	@JoinColumn(name = "CTipoVia")
+	@JoinColumn(name = "CTipoVia", nullable = false)
 	private TipoVia ObjtipoVia;
 
 	public Direccion() {
