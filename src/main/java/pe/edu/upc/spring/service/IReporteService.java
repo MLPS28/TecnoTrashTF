@@ -11,4 +11,5 @@ public interface IReporteService {
 	public void eliminar(int CReporte);
 	public Optional<Reporte> listarId(int CReporte);
 	public List<Reporte> listar();	
+	public List<Reporte> buscarDireccionReporte(String NDireccion);	
 }
