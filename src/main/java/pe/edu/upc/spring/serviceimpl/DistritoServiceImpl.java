@@ -7,20 +7,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import pe.edu.upc.spring.model.Distrito;
 import pe.edu.upc.spring.repository.IDistritoRepository;
 import pe.edu.upc.spring.service.IDistritoService;
+
 
 @Service
 public class DistritoServiceImpl implements IDistritoService {
 
 	@Autowired //ya no es inject
-	private IDistritoRepository dDistrito;  //drace: objeto o representacion de IRaceRepository
+	private IDistritoRepository diDistrito;  //drace: objeto o representacion de IRaceRepository
 	
 	@Override
 	@Transactional //los que no impliquen listados solo seran de tipo transactional
 	public boolean grabar(Distrito distrito) {
-		Distrito objDistrito = dDistrito.save(distrito);
+		Distrito objDistrito = diDistrito.save(distrito);
 		if (objDistrito == null)
 			return false;
 		else
@@ -30,19 +32,19 @@ public class DistritoServiceImpl implements IDistritoService {
 	@Override
 	@Transactional
 	public void eliminar(int CDistrito) {
-		dDistrito.deleteById(CDistrito); //solo necesita el id que se desea eliminar
+		diDistrito.deleteById(CDistrito); //solo necesita el id que se desea eliminar
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public Optional<Distrito> listarId(int CDistrito) {
-		return dDistrito.findById(CDistrito);
+		return diDistrito.findById(CDistrito);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public List<Distrito> listar() {
-		return dDistrito.findAll(); //devuelve todo en una lista
+		return diDistrito.findAll(); //devuelve todo en una lista
 	}
 
 }
