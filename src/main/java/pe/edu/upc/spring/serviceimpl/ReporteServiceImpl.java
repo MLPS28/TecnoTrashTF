@@ -29,8 +29,8 @@ public class ReporteServiceImpl implements IReporteService {
 
 	@Override
 	@Transactional
-	public void eliminar(int CDireccion) {
-		dReporte.deleteById(CDireccion); //solo necesita el id que se desea eliminar
+	public void eliminar(int CReporte) {
+		dReporte.deleteById(CReporte); //solo necesita el id que se desea eliminar
 	}
 
 	@Override
