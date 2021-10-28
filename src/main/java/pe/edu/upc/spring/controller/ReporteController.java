@@ -15,14 +15,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
 
-import pe.edu.upc.spring.model.Usuario;
-import pe.edu.upc.spring.service.IUsuarioService;
+import pe.edu.upc.spring.model.Reporte;
+import pe.edu.upc.spring.service.IReporteService;
 
 @Controller 	
-@RequestMapping("/usuario") //que atienda el controlador /race  (cuando hay muchos controladores), pero este no muestra nada, tiene q ir a bienvenido
+@RequestMapping("/report") //que atienda el controlador /race  (cuando hay muchos controladores), pero este no muestra nada, tiene q ir a bienvenido
 public class ReporteController {
 	@Autowired
-	private IUsuarioService rService;
+	private IReporteService rService;
 	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
@@ -37,23 +37,23 @@ public class ReporteController {
 
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
-		model.addAttribute("usuario", new Usuario());
-		return "usuario"; // "race" es una pagina del frontEnd para insertar y/o modificar
+		model.addAttribute("report", new Reporte());
+		return "report"; // "race" es una pagina del frontEnd para insertar y/o modificar
 	}
 	
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute Usuario objUsuario, BindingResult binRes, Model model) 
+	public String registrar(@ModelAttribute Reporte objReporte, BindingResult binRes, Model model) 
 		throws ParseException
 	{
 		if (binRes.hasErrors())
-			return "usuario";
+			return "report";
 		else {
-			boolean flag = rService.grabar(objUsuario);
+			boolean flag = rService.grabar(objReporte);
 			if (flag)
-				return "redirect:/usuario/listar";
+				return "redirect:/report/listar";
 			else {
 				model.addAttribute("mensaje", "Ocurrio un problema");
-				return "redirect:/usuario/irRegistrar";
+				return "redirect:/report/irRegistrar";
 			}
 		}
 	}
@@ -62,14 +62,14 @@ public class ReporteController {
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) 
 		throws ParseException
 	{
-		Optional<Usuario> objUsuario = rService.listarId(id);
-		if (objUsuario == null) {
+		Optional<Reporte> objReporte = rService.listarId(id);
+		if (objReporte == null) {
 			objRedir.addFlashAttribute("mensaje", "Ocurrio un problema");
-			return "redirect:/usuario/listar";
+			return "redirect:/report/listar";
 		}
 		else {
-			model.addAttribute("usuario",objUsuario);
-			return "usuario";
+			model.addAttribute("report",objReporte);
+			return "report";
 		}
 	}
 		
