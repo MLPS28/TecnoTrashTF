@@ -19,7 +19,7 @@ import pe.edu.upc.spring.model.Usuario;
 import pe.edu.upc.spring.service.IUsuarioService;
 
 @Controller 	
-@RequestMapping("/usuario") //que atienda el controlador /race  (cuando hay muchos controladores), pero este no muestra nada, tiene q ir a bienvenido
+@RequestMapping("/usuario")
 public class UsuarioController {
 	@Autowired
 	private IUsuarioService uService;
@@ -32,13 +32,13 @@ public class UsuarioController {
 	@RequestMapping("/")
 	public String irPaginaListadoUsuarios(Map<String, Object> model) {
 		model.put("listaUsuarios", uService.listar());
-		return "listUsuario"; // "listRace" es una pagina del frontEnd para listar
+		return "listUser"; // "listRace" es una pagina del frontEnd para listar
 	}
 
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
-		model.addAttribute("usuario", new Usuario());
-		return "usuario"; // "race" es una pagina del frontEnd para insertar y/o modificar
+		model.addAttribute("register", new Usuario());
+		return "register"; // "race" es una pagina del frontEnd para insertar y/o modificar
 	}
 	
 	@RequestMapping("/registrar")
@@ -46,11 +46,11 @@ public class UsuarioController {
 		throws ParseException
 	{
 		if (binRes.hasErrors())
-			return "usuario";
+			return "register";
 		else {
 			boolean flag = uService.grabar(objUsuario);
 			if (flag)
-				return "redirect:/usuario/listar";
+				return "redirect:/register/listar";
 			else {
 				model.addAttribute("mensaje", "Ocurrio un problema");
 				return "redirect:/usuario/irRegistrar";
@@ -86,13 +86,13 @@ public class UsuarioController {
 			model.put("mensaje", "Ocurrio un problema");
 			model.put("listaUsuarios", uService.listar());
 		}
-		return "listUsuario";
+		return "listUser";
 	}
 		
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model ) {
 		model.put("listaUsuarios", uService.listar());
-		return "listUsuario";
+		return "listUser";
 	}
 	
 }
