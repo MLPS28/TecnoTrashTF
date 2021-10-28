@@ -19,7 +19,7 @@ import pe.edu.upc.spring.model.UsuarioPremio;
 import pe.edu.upc.spring.service.IUsuarioPremioService;
 
 @Controller 	
-@RequestMapping("/usuario") //que atienda el controlador /race  (cuando hay muchos controladores), pero este no muestra nada, tiene q ir a bienvenido
+@RequestMapping("/usuariopremio") //que atienda el controlador /race  (cuando hay muchos controladores), pero este no muestra nada, tiene q ir a bienvenido
 public class UsuarioPremioController {
 	@Autowired
 	private IUsuarioPremioService upService;
