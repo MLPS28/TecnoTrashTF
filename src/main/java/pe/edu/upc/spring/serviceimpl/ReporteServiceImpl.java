@@ -44,6 +44,10 @@ public class ReporteServiceImpl implements IReporteService {
 	public List<Reporte> listar() {
 		return dReporte.findAll(); //devuelve todo en una lista
 	}
-
-
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Reporte> buscarDireccionReporte(String NDireccion) {
+		return dReporte.buscarDireccionReporte(NDireccion); 
+	}
 }

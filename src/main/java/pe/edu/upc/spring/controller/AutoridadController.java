@@ -15,14 +15,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sun.el.parser.ParseException;
 
-import pe.edu.upc.spring.model.Premio;
-import pe.edu.upc.spring.service.IPremioService;
+import pe.edu.upc.spring.model.Autoridad;
+import pe.edu.upc.spring.service.IAutoridadService;
 
 @Controller 	
-@RequestMapping("/premio") //que atienda el controlador /race  (cuando hay muchos controladores), pero este no muestra nada, tiene q ir a bienvenido
-public class PremioController {
+@RequestMapping("/autoridad") //que atienda el controlador /race  (cuando hay muchos controladores), pero este no muestra nada, tiene q ir a bienvenido
+public class AutoridadController {
 	@Autowired
-	private IPremioService pService;
+	private IAutoridadService aService;
 	
 	@RequestMapping("/bienvenido")
 	public String irPaginaBienvenida() {
@@ -31,29 +31,29 @@ public class PremioController {
 	
 	@RequestMapping("/")
 	public String irPaginaListadoPremios(Map<String, Object> model) {
-		model.put("listaPremios", pService.listar());
-		return "listPremio"; // "listRace" es una pagina del frontEnd para listar
+		model.put("listaAutoridades", aService.listar());
+		return "listAutoridad"; // "listRace" es una pagina del frontEnd para listar
 	}
 
 	@RequestMapping("/irRegistrar")
 	public String irPaginaRegistrar(Model model) {
-		model.addAttribute("premio", new Premio());
-		return "premio"; // "premio" es una pagina del frontEnd para insertar y/o modificar
+		model.addAttribute("autoridad", new Autoridad());
+		return "autoridad"; // "autoridad" es una pagina del frontEnd para insertar y/o modificar
 	}
 	
 	@RequestMapping("/registrar")
-	public String registrar(@ModelAttribute Premio objPremio, BindingResult binRes, Model model) 
+	public String registrar(@ModelAttribute Autoridad objAutoridad, BindingResult binRes, Model model) 
 		throws ParseException
 	{
 		if (binRes.hasErrors())
-			return "premio";
+			return "autoridad";
 		else {
-			boolean flag = pService.grabar(objPremio);
+			boolean flag = aService.grabar(objAutoridad);
 			if (flag)
-				return "redirect:/premio/listar";
+				return "redirect:/autoridad/listar";
 			else {
-				model.addAttribute("mensaje", "El premio no esta disponible");
-				return "redirect:/premio/irRegistrar";
+				model.addAttribute("mensaje", "La autoridad esta mal implementada");
+				return "redirect:/autoridad/irRegistrar";
 			}
 		}
 	}
@@ -62,14 +62,14 @@ public class PremioController {
 	public String modificar(@PathVariable int id, Model model, RedirectAttributes objRedir) 
 		throws ParseException
 	{
-		Optional<Premio> objPremio = pService.listarId(id);
-		if (objPremio == null) {
-			objRedir.addFlashAttribute("mensaje", "El premio no esta disponible");
-			return "redirect:/premio/listar";
+		Optional<Autoridad> objAutoridad = aService.listarId(id);
+		if (objAutoridad == null) {
+			objRedir.addFlashAttribute("mensaje", "Autoridad mal implementeada");
+			return "redirect:/autoridad/listar";
 		}
 		else {
-			model.addAttribute("premio",objPremio);
-			return "premio";
+			model.addAttribute("autoridad",objAutoridad);
+			return "autoridad";
 		}
 	}
 		
@@ -77,22 +77,22 @@ public class PremioController {
 	public String eliminar(Map<String, Object> model,  @RequestParam(value="id") Integer id) {
 		try {
 			if (id!=null && id>0) {
-				pService.eliminar(id);
-				model.put("listaPremios", pService.listar());
+				aService.eliminar(id);
+				model.put("listaAutoridades", aService.listar());
 			}
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
 			model.put("mensaje", "Ocurrio un error");
-			model.put("listaPremios", pService.listar());
+			model.put("listaAutoridades", aService.listar());
 		}
-		return "listPremio";
+		return "listAutoridad";
 	}
 		
 	@RequestMapping("/listar")
 	public String listar(Map<String, Object> model ) {
-		model.put("listaPremios", pService.listar());
-		return "listPremio";
+		model.put("listaAutoridades", aService.listar());
+		return "listAutoridad";
 	}
 	
 }
